@@ -22,3 +22,16 @@ mongo_driver.init(
     udp_router
   )
 );
+
+
+/* 
+
+  SmartCave project
+  Smartcave is a opensource project for smarthome Trigger&Event actions.
+  This system can listen on UDP actions of devices in LAN and react on it by configuration im /config/logic.js
+
+  DEVICE: KEYGUARD
+  DESCRIPTION: Arduino based device with RFID reader.
+  UDP_PACKET_EXAMPLE: KEYGUARD|RFID|MIFARE 1KB|4ABFBA12
+  
+*/
