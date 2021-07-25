@@ -3,9 +3,11 @@ const logModel = require('./models/logModel.js');
 
 // Routes
 const keyguardRoute = require('./routes/keyguard.js');
+const discoverRoute = require('./routes/discover.js');
 
 exports.routes = {
-  "KEYGUARD" : keyguardRoute
+  "KEYGUARD" : keyguardRoute,
+  "DISCOVER" : discoverRoute,
 }
 
 /* route metoda při příchodu requestu */

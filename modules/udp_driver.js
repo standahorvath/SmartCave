@@ -63,3 +63,30 @@ exports.sendRequest = function(device, method, parameters = []){
   client.close();
 
 }
+exports.sendInfo = function(parameters = []){
+
+  var message = "INFO" + "|" + config.device_name;
+
+  if(parameters.length > 0){
+    for(var i = 0; i < parameters.length; i++){
+      message += "|" + parameters[i];
+    }
+  }
+
+  var client = udp.createSocket('udp4');
+    client.send(message, config.udp_port, config.broadcast_id, (err) => {
+    client.close();
+  });
+  client.close();
+
+}
+
+exports.sendRaw = function(message){
+
+  var client = udp.createSocket('udp4');
+    client.send(message, config.udp_port, config.broadcast_id, (err) => {
+    client.close();
+  });
+  client.close();
+
+}

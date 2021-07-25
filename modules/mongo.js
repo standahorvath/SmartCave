@@ -9,12 +9,17 @@ exports.db = null;
 
 /* Init databáze */
 exports.init =  function(callback = null) {
-  MongoClient.connect(url, function(err, database) {
+
+  MongoClient.connect(url, (err, client) => {
     connected = true;
-    exports.db = database;
+
+    // Client returned
+    var db = client.db(config.db_name);
+    exports.db = db;
 
     console.log("DB Connected")
 
     if(typeof callback == "function") callback();
     });
+
 }
