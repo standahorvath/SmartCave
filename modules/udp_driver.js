@@ -20,15 +20,22 @@ exports.init =  function(router, callback = null) {
 
         // Rosekání requestu na metodu a atributy a odeslání do routeru
         var udp_parts = msg.toString().split("|");
-        if(udp_parts.length > 0) {
-          if(udp_parts.length > 2){
+        if(udp_parts.length > 1) {
+          if(udp_parts.length > 3){
+
             var attr = [];
-            for(var i = 2; i < udp_parts.length; i++){
+            for(var i = 3; i < udp_parts.length; i++){
               attr.push(udp_parts[i]);
             }
-            router.route(udp_parts[0], udp_parts[1], attr);
+
+            router.route(udp_parts[0], udp_parts[1], udp_parts[2], attr);
+
           } else {
-            router.route(udp_parts[0], udp_parts[1]);
+            if(udp_parts.length > 2){
+              router.route(udp_parts[0], udp_parts[1], udp_parts[2]);
+            } else {
+              router.route(udp_parts[0], udp_parts[1]);
+            }
           }
         } else {
           // Chybný request
@@ -47,19 +54,25 @@ exports.init =  function(router, callback = null) {
 
 }
 
-exports.sendRequest = function(device, method, parameters = []){
+exports.sendRequest = function(device, method, name = null, parameters = []){
 
   var message = device + "|" + method;
+  if(name !== null) message += "|" + name;
+
   if(parameters.length > 0){
     for(var i = 0; i < parameters.length; i++){
       message += "|" + parameters[i];
     }
   }
-  
+
   var client = udp.createSocket('udp4');
     client.send(message, config.udp_port, config.broadcast_id, (err) => {
-    client.close();
-  });
+    
+     });
+
+  var client = udp.createSocket("udp4");
+  
+
   client.close();
 
 }

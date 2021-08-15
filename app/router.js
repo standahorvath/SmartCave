@@ -11,9 +11,10 @@ exports.routes = {
 }
 
 /* route metoda při příchodu requestu */
-exports.route =  async function(device, method, parameters = []) {
+exports.route =  async function(device, method, name = "", parameters = []) {
   console.log("Zařízení: "+device);
   console.log("Metoda: "+method);
+  console.log("Jméno: "+name);
   console.log("Parametry "+parameters);
 
 
@@ -21,8 +22,8 @@ exports.route =  async function(device, method, parameters = []) {
   var executed = [];
 
   if(typeof exports.routes[device] != "undefined"){
-    executed = await exports.routes[device].route(method, parameters)
+    executed = await exports.routes[device].route(method, name, parameters)
   }
 
-  logModel.logRoute(device, method, parameters, executed);
+  logModel.logRoute(device, method, name, parameters, executed);
 }
