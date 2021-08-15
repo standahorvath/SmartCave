@@ -11,5 +11,9 @@
 #define UDP_PORT              4210          // Number of UDP port
 #define UDP_BUFFER_SIZE       255          // Size of buffer for UDP messages
 
+#define DEBUG
+
+#define SMARTSWITCH
+#define SMARTSWITCH_OUTPUT    5
 
 #endif

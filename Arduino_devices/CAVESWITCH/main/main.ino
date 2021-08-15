@@ -9,6 +9,11 @@
 #include "Config.h"
 #include "Wifi.h"
 #include "Router.h"
+#include "Device.h"
+
+#ifdef SMARTSWITCH
+  #include "Smartswitch.h"
+#endif
 
 Wifi   * wifi;
 Router * router;
