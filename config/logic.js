@@ -8,5 +8,11 @@ module.exports = {
         "parameters" : ["ON"]
       }
     ]
+  },
+  "crons": {
+    "DATE_CRON" : {
+      "time" : 1000,
+      "method" : "TIME"
+    }
   }
 }
