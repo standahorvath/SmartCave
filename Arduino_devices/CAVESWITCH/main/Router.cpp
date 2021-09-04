@@ -9,16 +9,25 @@
   #include "Smartswitch.h"
 #endif
 
+#ifdef DISCOVER
+  #include "Discover.h"
+#endif
+
 Router::Router() {
 
 }
 
 /* Inicializační funkce */
-void Router::init(){
+void Router::init(WiFiUDP udp){
 
   #ifdef SMARTSWITCH
-    _ss = new Smartswitch("PC_01");
+    _ss = new Smartswitch("PC_01", udp);
     _ss->init();
+  #endif
+  
+  #ifdef DISCOVER
+    _d = new Discover("PC_01", udp);
+    _d->init();
   #endif
   
 }
@@ -106,6 +115,12 @@ void Router::process(char * request){
       if(router_device_name != NULL && _ss->isNamedBy(router_device_name)){
         _ss->processRoute(router_function, router_parameter);
       }
+    #endif
+
+    #ifdef DISCOVER
+      //if(router_device_name != NULL && _ss->isNamedBy(router_device_name)){
+        _d->processRoute(router_function);
+      //}
     #endif
 
 

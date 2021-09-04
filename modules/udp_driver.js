@@ -64,16 +64,18 @@ exports.sendRequest = function(device, method, name = null, parameters = []){
       message += "|" + parameters[i];
     }
   }
-
+console.log(message);
   var client = udp.createSocket('udp4');
-    client.send(message, config.udp_port, config.broadcast_id, (err) => {
-    
+
+  client.bind(function () {
+    client.setBroadcast(true);
+  });
+
+    client.send(message, 0, message.length, config.udp_port, config.broadcast_id, (err) => {
+      client.close();
      });
 
-  var client = udp.createSocket("udp4");
   
-
-  client.close();
 
 }
 exports.sendInfo = function(parameters = []){

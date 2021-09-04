@@ -13,7 +13,7 @@
 
 class Smartswitch {
   public:
-    Smartswitch(const char * name);
+    Smartswitch(const char * name, WiFiUDP udp);
     void processRoute(char * function, char * param);
     int isNamedBy(char * name);
     void init();
@@ -23,6 +23,7 @@ class Smartswitch {
     void Pernament(char * param);
     void setOutput();
     int outputState;
+    WiFiUDP _udp;
 };
 
 #endif

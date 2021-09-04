@@ -24,20 +24,20 @@ WiFiUDP udp_client;
 
 void setup() {
 
+
   serialInit();
   
   wifi    = new Wifi();
   router  = new Router();
 
   wifi->init();
-  router->init();
-  
+  router->init(wifi->getUDP());
+
 }
 
 void loop() {
   
   wifi->listen_udp(router);
-  
 }
 
 // Init Serial comunication

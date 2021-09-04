@@ -17,6 +17,7 @@ class Wifi
     void init();
     void process();
     void listen_udp(Router * router);
+    WiFiUDP getUDP();
   private:
   WiFiUDP _udp;
   char * _udp_buffer;

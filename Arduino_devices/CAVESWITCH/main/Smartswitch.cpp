@@ -8,8 +8,9 @@
 #include <ESP8266WiFi.h>
 #include <WiFiUDP.h>
 
-Smartswitch::Smartswitch(const char * name) {
+Smartswitch::Smartswitch(const char * name, WiFiUDP udp) {
   Smartswitch::device_name = name;
+  Smartswitch::_udp = udp;
 }
 
 /* Initialize function */

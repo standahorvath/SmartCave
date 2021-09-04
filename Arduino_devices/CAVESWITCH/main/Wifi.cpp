@@ -36,7 +36,9 @@ void Wifi::init(){
 
     _udp_buffer = new char[UDP_BUFFER_SIZE];
 }
-
+WiFiUDP Wifi::getUDP(){
+  return _udp;
+}
 void Wifi::listen_udp(Router * router){
    int t_packetSize = _udp.parsePacket();
   if (t_packetSize) {
